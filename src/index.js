@@ -11,3 +11,24 @@ import './css/base.scss';
 import './images/turing-logo.png'
 
 console.log('This is the JavaScript entry file - your code begins here.');
+
+const userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
+  .then(userResponse => userResponse.json())
+  .then()
+  ;
+
+const roomData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms')
+  .then(roomResponse => roomResponse.json())
+  .then()
+  ;
+
+const bookingData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
+  .then(userResponse => userResponse.json())
+  .then()
+  ;
+
+// username: manager
+// password: overlook2019
+
+// username: customer50 (where 50 is the ID of the user)
+// password: overlook2019
