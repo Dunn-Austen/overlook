@@ -4,20 +4,34 @@
     <title>Webpack Starter Kit</title>
   </head>
   <body>
-    <h1>Hotel Time</h1>
+
+    <section>
+      <h1>Welcome! Manage hotel information by selecting the appropriate response below</h1>
+      <h2>Are you a customer or an employee?</h2>
+      <button class="customer-btn" type="button" name="button">Customer</button>
+      <button class="employee-btn" type="button" name="button">Employee</button>
+    </section>
     <form class="user-form" action="index.html" method="post">
-      <label for="user-input">Customer Username</label>
-      <input type="text" id="user-input" placeholder="Enter ID">
-      <label for="user-password">Customer Password</label>
-      <input type="text" id="user-password" placeholder="Enter password">
-      <button class="user-submit" type="button" name="button"></button>
+      <div class="input-container" role="element meant to help with styling grouping and spacing">
+        <label for="user-input">Customer Username</label>
+        <input type="text" id="user-input" placeholder="Enter ID">
+      </div>
+      <div class="input-container">
+        <label for="user-password">Customer Password</label>
+        <input type="text" id="user-password" placeholder="Enter password">
+      </div>
+        <button class="user-submit" type="button" name="button">Submit</button>
     </form>
     <form class="manager-form" action="index.html" method="post">
-      <label for="manager-input">Employee Username</label>
-      <input type="text" id="manager-input" placeholder="Enter ID">
-      <label for="manager-password">Employee Password</label>
-      <input type="text" id="manager-password" placeholder="Enter password">
-      <button class="manager-submit" type="button" name="button"></button>
+      <div class="input-container">
+        <label for="manager-input">Employee Username</label>
+        <input type="text" id="manager-input" placeholder="Enter ID">
+      </div>
+      <div class="input-container">
+        <label for="manager-password">Employee Password</label>
+        <input type="text" id="manager-password" placeholder="Enter password">
+      </div>
+        <button class="manager-submit" type="button" name="button"></button>
     </form>
 
     <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
