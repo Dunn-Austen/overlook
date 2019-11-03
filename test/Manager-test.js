@@ -34,8 +34,8 @@ describe('Manager', () => {
     expect(manager.findTotalAvailableRoomsByDate("2019/11/06")).to.equal(20);
   });
 
-  it.skip('should find percentage of occupied rooms by date', () => {
-    expect(manager.findPercentageOfRoomsOccupiedByDate(date)).to.eql();
+  it('should find percentage of occupied rooms by date', () => {
+    expect(manager.findPercentageOfRoomsOccupiedByDate("2019/11/06")).to.equal('20%');
   });
 
 });
