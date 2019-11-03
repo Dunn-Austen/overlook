@@ -31,13 +31,32 @@ const bookingData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bo
 // password: overlook2019
 
 
-// Event listeners for show post-data form buttons
-$('.customer-btn').on('click', function() {
+// Event listeners - welcome section
+$('.user-btn').on('click', function() {
   $('.user-form').toggle();
   $('.manager-form').hide();
 });
 
-$('.employee-btn').on('click', function() {
+$('.manager-btn').on('click', function() {
   $('.manager-form').toggle();
   $('.user-form').hide();
+});
+
+// Event listeners - login forms
+$('.manager-submit').on('click', function() {
+  if ($('#manager-input').val() === 'manager' && $('#manager-password').val() === 'overlook2019') {
+    $('.manager-section').toggle();
+    $('.manager-form').hide();
+  } else {
+    //error
+  }
+});
+
+$('.user-submit').on('click', function() {
+  if ($('#user-input').val() === 'sampleName' && $('#user-password').val() === 'overlook2019') {
+    $('.user-section').toggle();
+    $('.user-form').hide();
+  } else {
+    //error
+  }
 });
