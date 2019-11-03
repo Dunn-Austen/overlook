@@ -13,13 +13,15 @@ class Manager extends BookingCalculations {
     return userInfo.id
   }
 
-  findTotalAvailableRoomsToday(date) {
-    let availableRooms = findRoomsAvailableToday(date);
+  findTotalAvailableRoomsByDate(date) {
+    let availableRooms = this.findRoomsAvailableByDate(date);
     return availableRooms.length
   }
 
-  findPercentOccupiedToday() {
-    
+  findPercentageOfRoomsOccupiedByDate(date) {
+    let totalAvailable = this.findTotalAvailableRoomsByDate(date);
+    let percentage =  ((25 - totalAvailable) / 25) * 100;
+    return `${percentage}%`
   }
 }
 
