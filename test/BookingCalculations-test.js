@@ -38,6 +38,7 @@ describe('BookingCalculations', () => {
       roomNumber: 18,
       roomServiceCharges: [ ]
       },
+
       {
       id: 1572293130160,
       userID: 16,
@@ -45,6 +46,7 @@ describe('BookingCalculations', () => {
       roomNumber: 7,
       roomServiceCharges: [ ]
       },
+
       {
       id: 1572293130160,
       userID: 30,
@@ -52,6 +54,7 @@ describe('BookingCalculations', () => {
       roomNumber: 11,
       roomServiceCharges: [ ]
       },
+
       {
       id: 1572293130161,
       userID: 50,
@@ -59,18 +62,35 @@ describe('BookingCalculations', () => {
       roomNumber: 14,
       roomServiceCharges: [ ]
       },
+      
       {
       id: 1572293130163,
       userID: 39,
       date: "2019/11/06",
       roomNumber: 21,
       roomServiceCharges: [ ]
-      },
+      }
     ]);
   });
 
   it('should be able to find all bookings for a specific user', () => {
-    expect(bookingCalculations.findBookings(id)).to.eql();
+    expect(bookingCalculations.findBookings(9)).to.eql([
+      {
+      id: 1572293130161,
+      userID: 9,
+      date: "2019/11/07",
+      roomNumber: 5,
+      roomServiceCharges: [ ]
+      },
+
+      {
+      id: 1572293130161,
+      userID: 9,
+      date: "2019/11/05",
+      roomNumber: 20,
+      roomServiceCharges: [ ]
+      }
+    ]);
   });
 
   it.skip('should be able to find available rooms by date', () => {
