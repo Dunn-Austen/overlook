@@ -18,7 +18,7 @@ class BookingCalculations {
   }
 
   findRoomsAvailableByDate(date) {
-    let bookingsOnDate = findBookings(date);
+    let bookingsOnDate = this.findBookings(date);
     let occupiedRoomNumbers = bookingsOnDate.reduce((acc, booking) => {
       this.rooms.forEach(room => {
         if (room.number === booking.roomNumber) {
@@ -29,17 +29,15 @@ class BookingCalculations {
       return acc
     }, [])
 
-    console.log(occupiedRoomNumbers)
     let availableRooms = this.rooms.filter(room => {
       return !occupiedRoomNumbers.includes(room.number)
     })
-
     return availableRooms
   }
 
 // Takes in either id or Date (finds revenue for user or for day)
   findRevenue(metric) {
-    let bookingsForUserOrDate = findBookings(metric);
+    let bookingsForUserOrDate = this.findBookings(metric);
     let expectedFees = bookingsForUserOrDate.map(booking => {
       return booking.costPerNight
     })

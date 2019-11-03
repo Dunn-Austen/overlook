@@ -62,7 +62,7 @@ describe('BookingCalculations', () => {
       roomNumber: 14,
       roomServiceCharges: [ ]
       },
-      
+
       {
       id: 1572293130163,
       userID: 39,
@@ -93,8 +93,8 @@ describe('BookingCalculations', () => {
     ]);
   });
 
-  it.skip('should be able to find available rooms by date', () => {
-    expect(bookingCalculations.findRoomsAvailableByDate(date)).to.eql();
+  it('should be able to find available rooms by date', () => {
+    expect(bookingCalculations.findRoomsAvailableByDate("2019/11/06").length).to.equal(20);
   });
 
   it.skip('should be able to find total spent by a customer', () => {

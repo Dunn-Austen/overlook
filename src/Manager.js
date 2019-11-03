@@ -14,12 +14,12 @@ class Manager extends BookingCalculations {
   }
 
   findTotalAvailableRoomsByDate(date) {
-    let availableRooms = findRoomsAvailableByDate(date);
+    let availableRooms = this.findRoomsAvailableByDate(date);
     return availableRooms.length
   }
 
   findPercentageOfRoomsOccupiedByDate(date) {
-    let totalAvailable = findTotalAvailableRoomsByDate(date);
+    let totalAvailable = this.findTotalAvailableRoomsByDate(date);
     let percentage =  ((25 - totalAvailable) / 25) * 100;
     return `${percentage}%`
   }
