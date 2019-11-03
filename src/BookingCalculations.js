@@ -37,7 +37,21 @@ class BookingCalculations {
     return availableRooms
   }
 
+// Takes in either id or Date (finds revenue for user or for day)
+  findRevenue(metric) {
+    let bookingsForUserOrDate = findBookings(metric);
+    let expectedFees = bookingsForUserOrDate.map(booking => {
+      return booking.costPerNight
+    })
 
+    console.log(expectedFees);
+    let totalRevenueForMetric = expectedFees.reduce((sum, fee) => {
+      sum += fee
+      return sum
+    }, 0)
+
+    return totalRevenueForMetric
+  }
 }
 
 export default BookingCalculations;
