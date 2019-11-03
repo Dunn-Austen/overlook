@@ -21,8 +21,29 @@ describe('Customer', () => {
     expect(customer).to.be.an.instanceOf(Customer);
   });
 
-  it.skip('should find a list of available room types by date', () => {
-    expect(customer.findAvailableRoomsByRoomType(date)).to.eql();
+  it('should find a list of available room types by date', () => {
+    expect(customer.findAvailableRoomsByRoomType("2019/11/06")).to.eql([
+      'residential suite',
+      'suite',
+      'single room',
+      'single room',
+      'single room',
+      'junior suite',
+      'junior suite',
+      'single room',
+      'suite',
+      'single room',
+      'single room',
+      'residential suite',
+      'single room',
+      'junior suite',
+      'single room',
+      'residential suite',
+      'single room',
+      'residential suite',
+      'suite',
+      'single room'
+    ]);
   });
 
 });
