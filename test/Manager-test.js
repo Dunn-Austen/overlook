@@ -22,12 +22,12 @@ describe('Manager', () => {
     expect(manager).to.be.an.instanceOf(Manager);
   });
 
-  it('should be able to store bookings data in a property', () => {
+  it('should be able to store users data in a property', () => {
     expect(manager.users).to.eql(usersData);
   });
 
-  it.skip('should be able to find a user\'s ID by name', () => {
-    expect(manager.findUserID(name)).to.eql();
+  it('should be able to find a user\'s ID by name', () => {
+    expect(manager.findUserID("Faustino Quitzon")).to.equal(9);
   });
 
   it.skip('should find total available rooms by date', () => {
