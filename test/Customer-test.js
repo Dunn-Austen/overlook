@@ -1,12 +1,8 @@
-
 import chai from 'chai';
 const expect = chai.expect;
 
 import bookingsData from '../data/bookings-test-data';
 import roomsData from '../data/rooms';
-
-const chai = require('chai');
-const expect = chai.expect;
 
 import Customer from '../src/Customer';
 
