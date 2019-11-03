@@ -17,6 +17,26 @@ class BookingCalculations {
     return bookingsForMetric
   }
 
+  findRoomsAvailableToday(date) {
+    let bookingsOnDate = findBookings(date);
+    let occupiedRoomNumbers = bookingsOnDate.reduce((acc, booking) => {
+      this.rooms.forEach(room => {
+        if (room.number === booking.roomNumber) {
+          acc.push(room.number)
+        }
+      })
+
+      return acc
+    }, [])
+
+    console.log(occupiedRoomNumbers)
+    let availableRooms = this.rooms.filter(room => {
+      return !occupiedRoomNumbers.includes(room.number)
+    })
+
+    return availableRooms
+  }
+
 
 }
 
