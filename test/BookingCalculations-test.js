@@ -97,12 +97,12 @@ describe('BookingCalculations', () => {
     expect(bookingCalculations.findRoomsAvailableByDate("2019/11/06").length).to.equal(20);
   });
 
-  it.skip('should be able to find total spent by a customer', () => {
-    expect(bookingCalculations.findRevenue(id)).to.eql();
+  it('should be able to find total spent by a customer', () => {
+    expect(bookingCalculations.findRevenue(9)).to.eql(684.12);
   });
 
-  it.skip('should be able find to total revenue by date', () => {
-    expect(bookingCalculations.findRevenue(date)).to.eql();
+  it('should be able find to total revenue by date', () => {
+    expect(bookingCalculations.findRevenue("2019/11/06")).to.eql(1822.31);
   });
 
 });
