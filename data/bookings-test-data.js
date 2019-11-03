@@ -1,5 +1,4 @@
 const bookingsData = [
-  [
 {
 id: 1572293130156,
 userID: 19,
