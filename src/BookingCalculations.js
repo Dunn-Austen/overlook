@@ -39,15 +39,20 @@ class BookingCalculations {
   findRevenue(metric) {
     let bookingsForUserOrDate = this.findBookings(metric);
     let expectedFees = bookingsForUserOrDate.map(booking => {
+      this.rooms.forEach(room => {
+        if (booking.roomNumber === room.number) {
+          booking.costPerNight = room.costPerNight
+        }
+      })
+
       return booking.costPerNight
     })
 
-    console.log(expectedFees);
     let totalRevenueForMetric = expectedFees.reduce((sum, fee) => {
       sum += fee
       return sum
     }, 0)
-
+    
     return totalRevenueForMetric
   }
 }
