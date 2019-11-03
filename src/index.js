@@ -29,3 +29,15 @@ const bookingData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bo
 
 // username: customer50 (where 50 is the ID of the user)
 // password: overlook2019
+
+
+// Event listeners for show post-data form buttons
+$('.customer-btn').on('click', function() {
+  $('.user-form').toggle();
+  $('.manager-form').hide();
+});
+
+$('.employee-btn').on('click', function() {
+  $('.manager-form').toggle();
+  $('.user-form').hide();
+});
