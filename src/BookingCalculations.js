@@ -4,7 +4,6 @@ class BookingCalculations {
     this.rooms = rooms
   }
 
- //Takes is either id or date (finds bookings for User or For Day)
   findBookings(metric) {
     let bookingsForMetric = this.bookings.filter(booking => {
       if (typeof(metric) === 'number') {
@@ -35,7 +34,6 @@ class BookingCalculations {
     return availableRooms
   }
 
-// Takes in either id or Date (finds revenue for user or for day)
   findRevenue(metric) {
     let bookingsForUserOrDate = this.findBookings(metric);
     let expectedFees = bookingsForUserOrDate.map(booking => {
@@ -52,7 +50,7 @@ class BookingCalculations {
       sum += fee
       return sum
     }, 0)
-    
+
     return totalRevenueForMetric
   }
 }
