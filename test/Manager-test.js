@@ -30,8 +30,8 @@ describe('Manager', () => {
     expect(manager.findUserID("Faustino Quitzon")).to.equal(9);
   });
 
-  it.skip('should find total available rooms by date', () => {
-    expect(manager.findTotalAvailableRoomsToday(date)).to.eql();
+  it('should find total available rooms by date', () => {
+    expect(manager.findTotalAvailableRoomsByDate("2019/11/06")).to.equal(20);
   });
 
   it.skip('should find percentage of occupied rooms by date', () => {
