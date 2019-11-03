@@ -5,34 +5,45 @@
   </head>
   <body>
 
-    <section>
+    <section class="welcome-section">
       <h1>Welcome! Manage hotel information by selecting the appropriate response below</h1>
       <h2>Are you a customer or an employee?</h2>
-      <button class="customer-btn" type="button" name="button">Customer</button>
-      <button class="employee-btn" type="button" name="button">Employee</button>
+      <button class="user-btn" type="button" name="button">Customer</button>
+      <button class="manager-btn" type="button" name="button">Employee</button>
     </section>
     <form class="user-form" action="index.html" method="post">
       <div class="input-container" role="element meant to help with styling grouping and spacing">
         <label for="user-input">Customer Username</label>
-        <input type="text" id="user-input" placeholder="Enter ID">
+        <input type="text" id="user-input" placeholder="Enter ID" required>
       </div>
       <div class="input-container">
         <label for="user-password">Customer Password</label>
-        <input type="text" id="user-password" placeholder="Enter password">
+        <input type="password" id="user-password" placeholder="Enter password" required>
       </div>
         <button class="user-submit" type="button" name="button">Submit</button>
     </form>
     <form class="manager-form" action="index.html" method="post">
       <div class="input-container">
         <label for="manager-input">Employee Username</label>
-        <input type="text" id="manager-input" placeholder="Enter ID">
+        <input type="text" id="manager-input" placeholder="Enter ID" required>
       </div>
       <div class="input-container">
         <label for="manager-password">Employee Password</label>
-        <input type="text" id="manager-password" placeholder="Enter password">
+        <input type="password" id="manager-password" placeholder="Enter password" required>
       </div>
         <button class="manager-submit" type="button" name="button"></button>
     </form>
+    <section class="user-section">
+      <h3>Welcome User X</h3>
+      <p>All Bookings (past / present / future)</p>
+      <p>Total Spent (All time):</p>
+    </section>
+    <section class="manager-section">
+      <h3>Management Options</h3>
+      <p>Total Rooms Available:</p>
+      <p>Current Total Revenue (Today):</p>
+      <p>Current Percent Occupancy:</p>
+    </section>
 
     <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
 
