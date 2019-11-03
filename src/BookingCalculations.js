@@ -31,6 +31,7 @@ class BookingCalculations {
     let availableRooms = this.rooms.filter(room => {
       return !occupiedRoomNumbers.includes(room.number)
     })
+    
     return availableRooms
   }
 
