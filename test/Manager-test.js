@@ -14,15 +14,15 @@ describe('Manager', () => {
     manager = new Manager(bookingsData, roomsData, usersData)
   });
 
-  it.skip('should be a function', () => {
+  it('should be a function', () => {
     expect(Manager).to.be.a('function');
   });
 
-  it.skip('should be an instance of the class Manager', () => {
+  it('should be an instance of the class Manager', () => {
     expect(manager).to.be.an.instanceOf(Manager);
   });
 
-  it.skip('should be able to store bookings data in a property', () => {
+  it('should be able to store bookings data in a property', () => {
     expect(manager.users).to.eql(usersData);
   });
 

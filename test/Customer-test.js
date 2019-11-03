@@ -13,11 +13,11 @@ describe('Customer', () => {
     customer = new Customer(bookingsData, roomsData)
   });
 
-  it.skip('should be a function', () => {
+  it('should be a function', () => {
     expect(Customer).to.be.a('function');
   });
 
-  it.skip('should be an instance of the class Customer', () => {
+  it('should be an instance of the class Customer', () => {
     expect(customer).to.be.an.instanceOf(Customer);
   });
 

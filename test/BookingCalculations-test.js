@@ -17,23 +17,59 @@ describe('BookingCalculations', () => {
     expect(BookingCalculations).to.be.a('function');
   });
 
-  it.skip('should be an instance of the class Manager', () => {
+  it('should be an instance of the class Manager', () => {
     expect(bookingCalculations).to.be.an.instanceOf(BookingCalculations);
   });
 
-  it.skip('should be able to store bookings data in a property', () => {
+  it('should be able to store bookings data in a property', () => {
     expect(bookingCalculations.bookings).to.eql(bookingsData);
   });
 
-  it.skip('should be able to store bookings data in a property', () => {
+  it('should be able to store rooms data in a property', () => {
     expect(bookingCalculations.rooms).to.eql(roomsData);
   });
 
-  it.skip('should be able to find all bookings for a specific date', () => {
-    expect(bookingCalculations.findBookings(date)).to.eql();
+  it('should be able to find all bookings for a specific date', () => {
+    expect(bookingCalculations.findBookings("2019/11/06")).to.eql([
+      {
+      id: 1572293130156,
+      userID: 19,
+      date: "2019/11/06",
+      roomNumber: 18,
+      roomServiceCharges: [ ]
+      },
+      {
+      id: 1572293130160,
+      userID: 16,
+      date: "2019/11/06",
+      roomNumber: 7,
+      roomServiceCharges: [ ]
+      },
+      {
+      id: 1572293130160,
+      userID: 30,
+      date: "2019/11/06",
+      roomNumber: 11,
+      roomServiceCharges: [ ]
+      },
+      {
+      id: 1572293130161,
+      userID: 50,
+      date: "2019/11/06",
+      roomNumber: 14,
+      roomServiceCharges: [ ]
+      },
+      {
+      id: 1572293130163,
+      userID: 39,
+      date: "2019/11/06",
+      roomNumber: 21,
+      roomServiceCharges: [ ]
+      },
+    ]);
   });
 
-  it.skip('should be able to find all bookings for a specific user', () => {
+  it('should be able to find all bookings for a specific user', () => {
     expect(bookingCalculations.findBookings(id)).to.eql();
   });
 
