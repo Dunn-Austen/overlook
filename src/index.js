@@ -5,6 +5,10 @@ import './images/turing-logo.png'
 
  // Global Variables
  let userLoginID;
+ let bookingsData;
+ let roomsData;
+ let usersData;
+
 
 // Event listeners - welcome section
 $('.user-btn').on('click', function() {
@@ -30,6 +34,7 @@ $('.manager-submit').on('click', function() {
   if ($('#manager-input').val() === 'manager' && $('#manager-password').val() === 'overlook2019') {
     $('.manager-section').toggle();
     $('.manager-form').hide();
+
   } else {
     //error
   }
@@ -38,17 +43,16 @@ $('.manager-submit').on('click', function() {
 //Consider converting to if statement sequences and incorporating event.preventDefault()
 //  if the forms start causing problems
 $('.user-submit').on('click', function() {
-  if ($('#user-input').val().includes('customer') && $('#user-password').val()
-  === 'overlook2019' && (($('#user-input').val().slice(8, 10) * 1) <= 50)) {
+  if ($('#user-input').val().includes('customer') && $('#user-password').val() ===
+  'overlook2019' && (($('#user-input').val().slice(8, 10) * 1) <= 50)) {
     $('.user-section').toggle();
     $('.user-form').hide();
     userLoginID = ($('#user-input').val().slice(8, 10) * 1);
+
   } else {
     //error
   }
 });
-
-
 
 // Date Functionality
 let today = new Date();
@@ -71,7 +75,12 @@ function findTodaysDate() {
   today = `${yyyy}/${mm}/${dd}`;
 }
 
+$('.bookings-log').text();
+$('.expenses-incurred').text();
 
+$('.rooms-available').text();
+$('.todays-revenue').text();
+$('.percent-occupancy').text();
 
 // Fetch retrievals
 const userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
@@ -88,3 +97,11 @@ const bookingData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bo
   .then(userResponse => userResponse.json())
   .then(data => data.bookings)
   .catch(error => console.log('bookingsData error'));
+
+Promise.all([bookingsData, roomsData, usersData])
+  .then((data) => {
+    bookingsData = data[0];
+    roomsData = data[1];
+    usersData = data[2];
+  })
+  .catch(error => console.log('Something is amiss with promise all', error));
