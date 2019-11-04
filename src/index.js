@@ -4,6 +4,7 @@ import Manager from "./Manager";
 import Customer from "./Customer";
 import './css/base.scss';
 import './images/turing-logo.png'
+import './images/paradise-hotel.jpg'
 
  // Global Variables
  let userLoginID;

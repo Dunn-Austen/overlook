@@ -1,13 +1,42 @@
+@import 'mixins';
 @import 'variables';
 
-$primary-background: pink;
 
 body {
-  background-color: $primary-background;
+  background-color: #FEF4F4;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
 }
 
 form {
   border: 1px solid green;
+}
+
+button {
+  cursor: pointer;
+  height: 50px;
+  width: 80px;
+
+    &:hover,
+    &:focus {
+      @include btn-hover(#4C8BE4, 1px solid black, white)
+    }
+}
+
+.welcome-section {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  height: 90%;
+  width: 80%;
+}
+
+h1 {
+  text-align: center;
 }
 
 .manager-form {
