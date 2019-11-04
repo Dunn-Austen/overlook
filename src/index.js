@@ -1,4 +1,6 @@
 import $ from 'jquery';
+import BookingCalculations from "./BookingCalculations";
+import Manager from "./Manager";
 import Customer from "./Customer";
 import './css/base.scss';
 import './images/turing-logo.png'
@@ -8,6 +10,9 @@ import './images/turing-logo.png'
  let bookingsData;
  let roomsData;
  let usersData;
+ let bookingCalculations;
+ let customer;
+ let manager;
 
 
 // Event listeners - welcome section
@@ -75,13 +80,6 @@ function findTodaysDate() {
   today = `${yyyy}/${mm}/${dd}`;
 }
 
-$('.bookings-log').text();
-$('.expenses-incurred').text();
-
-$('.rooms-available').text();
-$('.todays-revenue').text();
-$('.percent-occupancy').text();
-
 // Fetch retrievals
 const userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
   .then(response => response.json())
@@ -98,10 +96,31 @@ const bookingData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bo
   .then(data => data.bookings)
   .catch(error => console.log('bookingsData error'));
 
-Promise.all([bookingsData, roomsData, usersData])
-  .then((data) => {
+Promise.all([bookingData, roomData, userData])
+  .then(data => {
     bookingsData = data[0];
     roomsData = data[1];
     usersData = data[2];
   })
-  .catch(error => console.log('Something is amiss with promise all', error));
+  .then(() => {
+    bookingCalculations = new BookingCalculations(bookingsData, roomsData);
+    customer = new Customer(bookingsData, roomsData);
+    manager = new Manager(bookingsData, roomsData, usersData);
+    gitLog();
+  })
+  .catch(error => {console.log('Something is amiss with promise all', error)});
+
+// I need to trouble shoot the sequencing of data insertion and fetch
+// function loadDashboardData() {
+//   $('.bookings-log').text(customer.findBookings(userLoginID));
+//   $('.expenses-incurred').text(customer);
+//
+//   $('.rooms-available').text();
+//   $('.todays-revenue').text();
+//   $('.percent-occupancy').text();
+// }
+
+function gitLog() {
+  console.log(bookingsData);
+  console.log(bookingCalculations)
+}
