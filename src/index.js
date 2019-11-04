@@ -47,6 +47,12 @@ $('.manager-btn').on('click', function() {
   $('.welcome-section').hide()
 });
 
+$('.return-home').on('click', function() {
+  $('.welcome-section').toggle();
+  $('.user-form').hide();
+  $('.manager-form').hide()
+});
+
 // Event listeners - login forms
 $('.manager-submit').on('click', function() {
   if ($('#manager-input').val() === 'manager' && $('#manager-password').val() === 'overlook2019') {
