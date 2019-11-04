@@ -53,7 +53,7 @@ $('.user-submit').on('click', function() {
     $('.user-section').toggle();
     $('.user-form').hide();
     userLoginID = ($('#user-input').val().slice(8, 10) * 1);
-
+    loadCustomerDashboardCalculations();
   } else {
     //error
   }
@@ -78,6 +78,22 @@ function findTodaysDate() {
   }
 
   today = `${yyyy}/${mm}/${dd}`;
+}
+
+function loadCustomerDashboardCalculations() {
+  $('.bookings-log').text(customer.findBookings(userLoginID));
+  $('.expenses-incurred').text(customer.findRevenue(userLoginID));
+}
+
+function loadManagerDashboardCalculations() {
+  $('.rooms-available').text(manager.findTotalAvailableRoomsByDate(today));
+  $('.todays-revenue').text(manager.findRevenue(today));
+  $('.percent-occupancy').text(manager.findPercentageOfRoomsOccupiedByDate(today));
+}
+
+function gitLog() {
+  console.log(bookingsData);
+  console.log(bookingCalculations)
 }
 
 // Fetch retrievals
@@ -107,20 +123,6 @@ Promise.all([bookingData, roomData, userData])
     customer = new Customer(bookingsData, roomsData);
     manager = new Manager(bookingsData, roomsData, usersData);
     gitLog();
+    loadManagerDashboardCalculations();
   })
   .catch(error => {console.log('Something is amiss with promise all', error)});
-
-// I need to trouble shoot the sequencing of data insertion and fetch
-// function loadDashboardData() {
-//   $('.bookings-log').text(customer.findBookings(userLoginID));
-//   $('.expenses-incurred').text(customer);
-//
-//   $('.rooms-available').text();
-//   $('.todays-revenue').text();
-//   $('.percent-occupancy').text();
-// }
-
-function gitLog() {
-  console.log(bookingsData);
-  console.log(bookingCalculations)
-}
