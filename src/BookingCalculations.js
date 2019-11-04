@@ -31,7 +31,7 @@ class BookingCalculations {
     let availableRooms = this.rooms.filter(room => {
       return !occupiedRoomNumbers.includes(room.number)
     })
-    
+
     return availableRooms
   }
 
@@ -52,7 +52,8 @@ class BookingCalculations {
       return sum
     }, 0)
 
-    return totalRevenueForMetric
+    let dollarAmount = parseFloat(totalRevenueForMetric.toFixed(2))
+    return `$${dollarAmount}`
   }
 }
 
