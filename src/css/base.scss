@@ -25,3 +25,8 @@ form {
 .user-section {
   display: none;
 }
+input {
+  &:valid {
+    border: 3px solid green;
+}
+}

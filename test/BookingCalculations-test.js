@@ -98,11 +98,11 @@ describe('BookingCalculations', () => {
   });
 
   it('should be able to find total spent by a customer', () => {
-    expect(bookingCalculations.findRevenue(9)).to.eql(684.12);
+    expect(bookingCalculations.findRevenue(9)).to.eql('$684.12');
   });
 
   it('should be able find to total revenue by date', () => {
-    expect(bookingCalculations.findRevenue("2019/11/06")).to.eql(1822.31);
+    expect(bookingCalculations.findRevenue("2019/11/06")).to.eql('$1822.31');
   });
 
 });

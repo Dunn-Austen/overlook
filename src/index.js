@@ -1,37 +1,18 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you import jQuery into a JS file if you use jQuery in that file
 import $ from 'jquery';
+import BookingCalculations from "./BookingCalculations";
+import Manager from "./Manager";
 import Customer from "./Customer";
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 
-console.log('This is the JavaScript entry file - your code begins here.');
-
-const userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
-  .then(response => response.json())
-  .then(data => data.users)
-  .catch(error => console.log('usersData error'));
-
-const roomData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms')
-  .then(roomResponse => roomResponse.json())
-  .then(data => data.rooms)
-  .catch(error => console.log('roomsData error'));
-
-const bookingData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
-  .then(userResponse => userResponse.json())
-  .then(data => data.bookings)
-  .catch(error => console.log('bookingsData error'));
-
-// username: manager
-// password: overlook2019
-
-// username: customer50 (where 50 is the ID of the user)
-// password: overlook2019
+ // Global Variables
+ let userLoginID;
+ let bookingsData;
+ let roomsData;
+ let usersData;
+ let bookingCalculations;
+ let customer;
+ let manager;
 
 
 // Event listeners - welcome section
@@ -58,6 +39,7 @@ $('.manager-submit').on('click', function() {
   if ($('#manager-input').val() === 'manager' && $('#manager-password').val() === 'overlook2019') {
     $('.manager-section').toggle();
     $('.manager-form').hide();
+
   } else {
     //error
   }
@@ -66,29 +48,92 @@ $('.manager-submit').on('click', function() {
 //Consider converting to if statement sequences and incorporating event.preventDefault()
 //  if the forms start causing problems
 $('.user-submit').on('click', function() {
-  if ($('#user-input').val() === 'sampleName' && $('#user-password').val() === 'overlook2019') {
+  if ($('#user-input').val().includes('customer') && $('#user-password').val() ===
+  'overlook2019' && (($('#user-input').val().slice(8, 10) * 1) <= 50)) {
     $('.user-section').toggle();
     $('.user-form').hide();
+    userLoginID = ($('#user-input').val().slice(8, 10) * 1);
+    loadCustomerDashboardCalculations();
   } else {
     //error
   }
 });
 
+// Date Functionality
+let today = new Date();
+findTodaysDate();
+$('.date').text(today);
 
+function findTodaysDate() {
+  let dd = today.getDate();
+  let mm = today.getMonth() + 1;
+  let yyyy = today.getFullYear();
+  if (dd < 10) {
+    dd = `0${dd}`;
+  }
 
+  if (mm < 10) {
+    mm = `0${mm}`;
+  }
 
-//// Notes on class methods
-// -total rooms Available Today
-// -Total revenue for today’s date
-// -Any room bookings for specific USER (past or present/upcoming)
-// -total spent by user all time
-// -show a list of room details for only available rooms on date X
-// -show available rooms by roomtype property
-// -be able to select a room for booking (POST REQUEST THE BOOKING)
-// -In the event that no rooms are available for the date/roomType selected, display
-//       a message fiercely apologizing to the user and asking them to adjust their room search
-// (manager)
-// -search for user by name
-// -view user name, all bookings, and total spent
-// -Add a room booking for that user
-// -Delete any upcoming room bookings for that user (they cannot delete a booking from the past) (DELETE REQUEST)
+  today = `${yyyy}/${mm}/${dd}`;
+}
+
+function produceCustomerBookingsForDOM(userLoginID) {
+  let arrayOfBookingData = customer.findBookings(userLoginID);
+  let list = `<ul class="customer-bookings">`
+  arrayOfBookingData.forEach(item => {
+    list += `<li class="customer-booking">
+             <p class="customer__booking--date">Date: ${item.date}:</p>
+             <p class="customer__booking--id">Reservation ID: ${item.id}</p>`
+  });
+
+  return list
+}
+
+function loadCustomerDashboardCalculations() {
+  $('.expenses-incurred').text((customer.findRevenue(userLoginID)));
+  $('.bookings-log').html(produceCustomerBookingsForDOM(userLoginID));
+}
+
+function loadManagerDashboardCalculations() {
+  $('.rooms-available').text(manager.findTotalAvailableRoomsByDate(today));
+  $('.todays-revenue').text(manager.findRevenue(today));
+  $('.percent-occupancy').text(manager.findPercentageOfRoomsOccupiedByDate(today));
+}
+
+function gitLog() {
+  console.log(bookingsData);
+  console.log(bookingCalculations)
+}
+
+// Fetch retrievals
+const userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
+  .then(response => response.json())
+  .then(data => data.users)
+  .catch(error => console.log('usersData error'));
+
+const roomData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms')
+  .then(roomResponse => roomResponse.json())
+  .then(data => data.rooms)
+  .catch(error => console.log('roomsData error'));
+
+const bookingData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
+  .then(userResponse => userResponse.json())
+  .then(data => data.bookings)
+  .catch(error => console.log('bookingsData error'));
+
+Promise.all([bookingData, roomData, userData])
+  .then(data => {
+    bookingsData = data[0];
+    roomsData = data[1];
+    usersData = data[2];
+  })
+  .then(() => {
+    bookingCalculations = new BookingCalculations(bookingsData, roomsData);
+    customer = new Customer(bookingsData, roomsData);
+    manager = new Manager(bookingsData, roomsData, usersData);
+    gitLog();
+    loadManagerDashboardCalculations();
+  })
+  .catch(error => {console.log('Something is amiss with promise all', error)});
