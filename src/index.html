@@ -4,7 +4,6 @@
     <title>Webpack Starter Kit</title>
   </head>
   <body>
-
     <section class="welcome-section">
       <h1>Welcome! Manage hotel information by selecting the appropriate response below</h1>
       <h2>Are you a customer or an employee?</h2>
@@ -14,7 +13,7 @@
     <form class="user-form" action="index.html" method="post">
       <div class="input-container" role="element meant to help with styling grouping and spacing">
         <label for="user-input">Customer Username</label>
-        <input type="text" id="user-input" placeholder="Enter ID" required>
+        <input type="text" id="user-input" placeholder="Enter ID"  maxlength="10" required>
       </div>
       <div class="input-container">
         <label for="user-password">Customer Password</label>
@@ -37,18 +36,19 @@
     </form>
     <section class="user-section">
       <h3>Welcome User X</h3>
-      <p>All Bookings (past / present / future)</p>
-      <p>Total Spent (All time):</p>
+      <ul class="customer-list">
+        <li>All Bookings (past / present / future)</li>
+        <li>Total Spent (All time):</li>
+      </ul>
     </section>
     <section class="manager-section">
       <h3>Management Options</h3>
-      <p>Total Rooms Available:</p>
-      <p>Current Total Revenue (Today):</p>
-      <p>Current Percent Occupancy:</p>
+      <ul class="manager-list">
+        <li>Total Rooms Available:</li>
+        <li>Current Total Revenue (Today):</li>
+        <li>Current Percent Occupancy:</li>
+      </ul>
+
     </section>
-
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
-
-    <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   </body>
 </html>
