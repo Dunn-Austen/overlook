@@ -38,11 +38,13 @@ const bookingData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bo
 $('.user-btn').on('click', function() {
   $('.user-form').toggle();
   $('.manager-form').hide();
+  $('.welcome-section').hide()
 });
 
 $('.manager-btn').on('click', function() {
   $('.manager-form').toggle();
   $('.user-form').hide();
+  $('.welcome-section').hide()
 });
 
 // Event listeners - login forms

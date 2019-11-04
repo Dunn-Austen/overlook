@@ -1,8 +1,5 @@
 @import 'variables';
-@import 'mixins';
 
-
-/* This is an example of using Sass, otherwise plain CSS works too*/
 $primary-background: pink;
 
 body {
@@ -11,4 +8,20 @@ body {
 
 form {
   border: 1px solid green;
+}
+
+.manager-form {
+  display: none;
+}
+
+.user-form {
+  display: none;
+}
+
+.manager-section {
+  display: none;
+}
+
+.user-section {
+  display: none;
 }
