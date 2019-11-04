@@ -62,7 +62,6 @@ $('.user-submit').on('click', function() {
 // Date Functionality
 let today = new Date();
 findTodaysDate();
-
 $('.date').text(today);
 
 function findTodaysDate() {
@@ -80,9 +79,21 @@ function findTodaysDate() {
   today = `${yyyy}/${mm}/${dd}`;
 }
 
+function produceCustomerBookingsForDOM(userLoginID) {
+  let arrayOfBookingData = customer.findBookings(userLoginID);
+  let list = `<ul class="customer-bookings">`
+  arrayOfBookingData.forEach(item => {
+    list += `<li class="customer-booking">
+             <p class="customer__booking--date">Date: ${item.date}:</p>
+             <p class="customer__booking--id">Reservation ID: ${item.id}</p>`
+  });
+
+  return list
+}
+
 function loadCustomerDashboardCalculations() {
-  $('.bookings-log').text(customer.findBookings(userLoginID));
-  $('.expenses-incurred').text(customer.findRevenue(userLoginID));
+  $('.expenses-incurred').text((customer.findRevenue(userLoginID)));
+  $('.bookings-log').html(produceCustomerBookingsForDOM(userLoginID));
 }
 
 function loadManagerDashboardCalculations() {
