@@ -35,6 +35,18 @@ $('.return-home').on('click', function() {
   $('.manager-form').hide()
 });
 
+$('.return-user').on('click', function() {
+  $('.user-section').hide();
+  $('.welcome-section').toggle()
+  emptyUserFields()
+});
+
+$('.return-manager').on('click', function() {
+  $('.manager-section').hide();
+  $('.welcome-section').toggle()
+  emptyManagerFields()
+});
+
 // Event listeners - login forms
 $('.manager-submit').on('click', function() {
   if ($('#manager-input').val() === 'manager' && $('#manager-password').val() === 'overlook2019') {
@@ -63,15 +75,24 @@ $('.user-submit').on('click', function() {
 function showErrorStylingForGuest() {
   $('#user-input').addClass('error');
   $('#user-password').addClass('error');
+  emptyUserFields()
+
+}
+
+function emptyUserFields() {
   $('#user-input').val('');
   $('#user-password').val('')
+}
+
+function emptyManagerFields() {
+  $('#manager-input').val('');
+  $('#manager-password').val('')
 }
 
 function showErrorStylingForEmployee() {
   $('#manager-input').addClass('error');
   $('#manager-password').addClass('error');
-  $('#manager-input').val('');
-  $('#manager-password').val('')
+  emptyManagerFields()
 }
 
 // Date Functionality
