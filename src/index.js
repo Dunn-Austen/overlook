@@ -52,6 +52,8 @@ $('.manager-submit').on('click', function() {
   if ($('#manager-input').val() === 'manager' && $('#manager-password').val() === 'overlook2019') {
     $('.manager-section').toggle();
     $('.manager-form').hide();
+    $('#manager-input').removeClass('error');
+    $('#manager-password').removeClass('error');
 
   } else {
     showErrorStylingForEmployee()
@@ -63,6 +65,8 @@ $('.user-submit').on('click', function() {
   'overlook2019' && (($('#user-input').val().slice(8, 10) * 1) <= 50)) {
     $('.user-section').toggle();
     $('.user-form').hide();
+    $('#user-input').removeClass('error');
+    $('#user-password').removeClass('error');
     userLoginID = ($('#user-input').val().slice(8, 10) * 1);
     loadCustomerDashboardCalculations();
 
@@ -72,16 +76,15 @@ $('.user-submit').on('click', function() {
 });
 
 // Error Functionality
+function emptyUserFields() {
+  $('#user-input').val('');
+  $('#user-password').val('')
+}
+
 function showErrorStylingForGuest() {
   $('#user-input').addClass('error');
   $('#user-password').addClass('error');
   emptyUserFields()
-
-}
-
-function emptyUserFields() {
-  $('#user-input').val('');
-  $('#user-password').val('')
 }
 
 function emptyManagerFields() {
@@ -97,7 +100,9 @@ function showErrorStylingForEmployee() {
 
 // Date Functionality
 let today = new Date();
+
 findTodaysDate();
+
 $('.date').text(today);
 
 function findTodaysDate() {

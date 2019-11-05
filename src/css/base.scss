@@ -65,7 +65,25 @@ h1 {
 
 .user-section {
   display: none;
+  margin: 0 auto;
+  width: 80%;
 }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "left right";
+  grid-template-columns: 1fr 1fr;
+}
+
+.grid-left {
+  grid-area: left;
+}
+
+.customer-list {
+  grid-area: right;
+}
+
 
 .input-container {
   height: 40px;
@@ -84,4 +102,18 @@ input {
 
 label {
   font-size: 30px;
+}
+
+.customer-list {
+  list-style-type: none;
+}
+
+.customer-bookings {
+  font-size: 10px;
+  height: 200px;
+  overflow: scroll;
+}
+
+.customer__booking--date {
+  font-weight: bold;
 }
