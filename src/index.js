@@ -15,6 +15,10 @@ import './images/paradise-hotel.jpg'
  let customer;
  let manager;
 
+// Have event listener for datepicker hide the bookings log and summon
+// a similar section with radio buttons instead of bullet points
+// use radio btn selection to feed post functionality
+
 
 // Event listeners - welcome section
 $('.user-btn').on('click', function() {
