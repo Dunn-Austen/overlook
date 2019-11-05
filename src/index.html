@@ -8,34 +8,38 @@
       <img src="../images/paradise-hotel.jpg" alt="Soothing scene of the sea with pebbles and a flower">
       <h1>Welcome to the Paradise Hotel<br/>Manage booking information by selecting the appropriate response below</h1>
       <h2>Are you a guest or an employee?</h2>
-      <div class="welcome__btn--container">
+      <div class="btn-container" role="presentation">
         <button class="user-btn" type="button" name="button">Guest</button>
         <button class="manager-btn" type="button" name="button">Employee</button>
       </div>
     </section>
     <form class="user-form" action="index.html" method="post">
-      <div class="input-container" role="element meant to help with styling grouping and spacing">
-        <label for="user-input">Customer Username</label>
-        <input type="text" id="user-input" placeholder="Enter ID"  maxlength="10" required>
+      <div class="input-container" role="presentation">
+        <label for="user-input">Username:</label>
+        <input type="text" id="user-input" maxlength="10" required>
       </div>
-      <div class="input-container">
-        <label for="user-password">Customer Password</label>
-        <input type="password" id="user-password" placeholder="Enter password" required>
+      <div class="input-container" role="presentation">
+        <label for="user-password">Password:</label>
+        <input type="password" id="user-password" required>
       </div>
-        <button class="user-submit" type="button" name="button">Submit</button>
-        <button class="return-home" type="button" name="button">Return Home</button>
+        <div class="btn-container" role="presentation">
+          <button class="user-submit" type="button" name="button">Submit</button>
+          <button class="return-home" type="button" name="button">Return</button>
+        </div>
     </form>
     <form class="manager-form" action="index.html" method="post">
-      <div class="input-container">
-        <label for="manager-input">Employee Username</label>
-        <input type="text" id="manager-input" placeholder="Enter ID" required>
+      <div class="input-container" role="presentation">
+        <label for="manager-input">Username:</label>
+        <input type="text" id="manager-input" required>
       </div>
-      <div class="input-container">
-        <label for="manager-password">Employee Password</label>
-        <input type="password" id="manager-password" placeholder="Enter password" required>
+      <div class="input-container" role="presentation">
+        <label for="manager-password">Password:</label>
+        <input type="password" id="manager-password" required>
       </div>
-        <button class="manager-submit" type="button" name="button">Submit</button>
-        <button class="return-home" type="button" name="button">Return Home</button>
+        <div class="btn-container" role="presentation">
+          <button class="manager-submit" type="button" name="button">Submit</button>
+          <button class="return-home" type="button" name="button">Return</button>
+        </div>
     </form>
     <section class="user-section">
       <h3>Welcome User X</h3>
