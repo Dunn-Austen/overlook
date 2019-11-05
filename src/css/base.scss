@@ -89,7 +89,7 @@ input {
   display: grid;
   grid-template-areas:
     "left right";
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: .5fr .5fr;
   height: 100%;
 }
 
@@ -138,7 +138,7 @@ input {
 .customer-bookings {
   border: 1px solid black;
   font-size: 15px;
-  height: 355px;
+  height: 370px;
   overflow: scroll;
   width: 100%;
 }
@@ -151,7 +151,7 @@ input {
   font-size: 15px;
   height: 40px;
   text-indent: 5px;
-  width: 60%;
+  width: 60%
 }
 
 .reservation-container {
@@ -160,22 +160,33 @@ input {
   display: flex;
   flex-direction: column;
   height: 50%;
-  justify-content: space-evenly;
+  justify-content: space-evenly
 }
 
 .customer__rooms--section {
-  display: none;
+  display: none
 }
 
 .customer__rooms--results {
   align-items: center;
   display: flex;
   flex-direction: column;
-  list-style-type: none;
+  list-style-type: none
 }
 
 .reservation-search {
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 15px;
+  margin-bottom: 15px
+}
+
+.user__info--container {
+  align-items: center;
+  border: 2px dashed black;
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  justify-content: center;
+  width: 55%;
+
 }
