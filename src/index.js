@@ -130,6 +130,15 @@ function findTodaysDate() {
 
 function produceCustomerBookingsForDOM(userLoginID) {
   let arrayOfBookingData = customer.findBookings(userLoginID);
+  arrayOfBookingData.sort((a, b) => {
+    if (a.date < b.date) {
+      return -1
+    }
+    if (a.date > b.date) {
+      return 1
+    }
+  })
+  console.log(arrayOfBookingData);
   let list = `<ul class="customer-bookings">`
   arrayOfBookingData.forEach(item => {
     list += `<li class="customer-booking">
@@ -180,7 +189,7 @@ Promise.all([bookingData, roomData, userData])
   })
   .then(() => {
     bookingCalculations = new BookingCalculations(bookingsData, roomsData);
-    customer = new Customer(bookingsData, roomsData);
+    customer = new Customer(bookingsData, roomsData, usersData);
     manager = new Manager(bookingsData, roomsData, usersData);
     gitLog();
     loadManagerDashboardCalculations();
