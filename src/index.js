@@ -42,12 +42,10 @@ $('.manager-submit').on('click', function() {
     $('.manager-form').hide();
 
   } else {
-    //error
+    showErrorStylingForEmployee()
   }
 });
 
-//Consider converting to if statement sequences and incorporating event.preventDefault()
-//  if the forms start causing problems
 $('.user-submit').on('click', function() {
   if ($('#user-input').val().includes('customer') && $('#user-password').val() ===
   'overlook2019' && (($('#user-input').val().slice(8, 10) * 1) <= 50)) {
@@ -55,10 +53,26 @@ $('.user-submit').on('click', function() {
     $('.user-form').hide();
     userLoginID = ($('#user-input').val().slice(8, 10) * 1);
     loadCustomerDashboardCalculations();
+
   } else {
-    //error
+    showErrorStylingForGuest()
   }
 });
+
+// Error Functionality
+function showErrorStylingForGuest() {
+  $('#user-input').addClass('error');
+  $('#user-password').addClass('error');
+  $('#user-input').val('');
+  $('#user-password').val('')
+}
+
+function showErrorStylingForEmployee() {
+  $('#manager-input').addClass('error');
+  $('#manager-password').addClass('error');
+  $('#manager-input').val('');
+  $('#manager-password').val('')
+}
 
 // Date Functionality
 let today = new Date();

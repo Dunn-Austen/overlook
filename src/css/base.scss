@@ -76,9 +76,10 @@ input {
   height: 40px;
   margin: 5px 0px;
   text-indent: 10px;
-  &:valid {
-    border: 3px solid green;
-  }
+}
+
+.error {
+  border: 2px solid red;
 }
 
 label {
