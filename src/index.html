@@ -5,51 +5,83 @@
   </head>
   <body>
     <section class="welcome-section">
-      <h1 class="date"></h1>
-      <h1>Welcome! Manage hotel information by selecting the appropriate response below</h1>
-      <h2>Are you a customer or an employee?</h2>
-      <button class="user-btn" type="button" name="button">Customer</button>
-      <button class="manager-btn" type="button" name="button">Employee</button>
+      <img src="../images/paradise-hotel.jpg" alt="Soothing scene of the sea with pebbles and a flower">
+      <h1>Welcome to the Paradise Hotel<br/>Manage booking information by selecting the appropriate response below</h1>
+      <h2>Are you a guest or an employee?</h2>
+      <div class="btn-container" role="presentation">
+        <button class="user-btn" type="button" name="button">Guest</button>
+        <button class="manager-btn" type="button" name="button">Employee</button>
+      </div>
     </section>
     <form class="user-form" action="index.html" method="post">
-      <div class="input-container" role="element meant to help with styling grouping and spacing">
-        <label for="user-input">Customer Username</label>
-        <input type="text" id="user-input" placeholder="Enter ID"  maxlength="10" required>
+      <div class="input-container" role="presentation">
+        <label for="user-input">Username:</label>
+        <input type="text" id="user-input" maxlength="10" required>
       </div>
-      <div class="input-container">
-        <label for="user-password">Customer Password</label>
-        <input type="password" id="user-password" placeholder="Enter password" required>
+      <div class="input-container" role="presentation">
+        <label for="user-password">Password:</label>
+        <input type="password" id="user-password" required>
       </div>
-        <button class="user-submit" type="button" name="button">Submit</button>
-        <button class="return-home" type="button" name="button">Return Home</button>
+        <div class="btn-container" role="presentation">
+          <button class="user-submit" type="button" name="button">Submit</button>
+          <button class="return-home" type="button" name="button">Return</button>
+        </div>
     </form>
     <form class="manager-form" action="index.html" method="post">
-      <div class="input-container">
-        <label for="manager-input">Employee Username</label>
-        <input type="text" id="manager-input" placeholder="Enter ID" required>
+      <div class="input-container" role="presentation">
+        <label for="manager-input">Username:</label>
+        <input type="text" id="manager-input" required>
       </div>
-      <div class="input-container">
-        <label for="manager-password">Employee Password</label>
-        <input type="password" id="manager-password" placeholder="Enter password" required>
+      <div class="input-container" role="presentation">
+        <label for="manager-password">Password:</label>
+        <input type="password" id="manager-password" required>
       </div>
-        <button class="manager-submit" type="button" name="button">Submit</button>
-        <button class="return-home" type="button" name="button">Return Home</button>
+        <div class="btn-container" role="presentation">
+          <button class="manager-submit" type="button" name="button">Submit</button>
+          <button class="return-home" type="button" name="button">Return</button>
+        </div>
     </form>
     <section class="user-section">
-      <h3>Welcome User X</h3>
-      <ul class="customer-list">
-        <li>Total Expenses Incurred: <span class="expenses-incurred"></span></li>
-        <li>Bookings Log: <span class="bookings-log"></span></li>
-      </ul>
+      <div class="grid-container" role="presentation">
+        <section class="grid-left">
+          <h3>Welcome User X<span class="user-name"></span></h3>
+          <p>Total Expenses Incurred: <span class="expenses-incurred"></span></p>
+          <h3>Reserve a Room</h3>
+          <div class="reservation-container" role="presentation">
+            <div class="datepicker-container" role="presentation">
+              <label class="datepicker-label" for="user-date">Select Date:</label>
+              <input type="date" id="user-date">
+            </div>
+            <div class="datepicker-container" role="presentation">
+              <label class="datepicker-label" for="room-finder">Filter Results:</label>
+              <select id="room-finder">
+                <option value="roomType">Room Type</option>
+                <option value="bidet">Bidet Available</option>
+                <option value="bedSize">Bed Size</option>
+                <option value="numBeds">Number of Beds</option>
+                <option value="costPerNight">Cost per Night</option>
+              </select>
+            </div>
+            <div class="btn-container" role="presentation">
+              <button class="select-date" type="button" name="button">Find Rooms</button>
+              <button class="return-user" type="button" name="button">Return</button>
+            </div>
+          </div>
+        </section>
+        <ul class="customer-list">
+          <li class="reservation-history">Reservation History:</li>
+          <li class="bookings-log"></li>
+        </ul>
+      </div>
     </section>
     <section class="manager-section">
       <h3>Management Options</h3>
+      <button class="return-manager" type="button" name="button">Return</button>
       <ul class="manager-list">
         <li>Total Rooms Available: <span class="rooms-available"></span></li>
         <li>Current Total Revenue (Today): <span class="todays-revenue"></span></li>
         <li>Current Percent Occupancy: <span class="percent-occupancy"></span></li>
       </ul>
-
     </section>
   </body>
 </html>

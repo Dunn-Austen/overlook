@@ -4,6 +4,7 @@ import Manager from "./Manager";
 import Customer from "./Customer";
 import './css/base.scss';
 import './images/turing-logo.png'
+import './images/paradise-hotel.jpg'
 
  // Global Variables
  let userLoginID;
@@ -13,6 +14,10 @@ import './images/turing-logo.png'
  let bookingCalculations;
  let customer;
  let manager;
+
+// Have event listener for datepicker hide the bookings log and summon
+// a similar section with radio buttons instead of bullet points
+// use radio btn selection to feed post functionality
 
 
 // Event listeners - welcome section
@@ -34,34 +39,74 @@ $('.return-home').on('click', function() {
   $('.manager-form').hide()
 });
 
+$('.return-user').on('click', function() {
+  $('.user-section').hide();
+  $('.welcome-section').toggle()
+  emptyUserFields()
+});
+
+$('.return-manager').on('click', function() {
+  $('.manager-section').hide();
+  $('.welcome-section').toggle()
+  emptyManagerFields()
+});
+
 // Event listeners - login forms
 $('.manager-submit').on('click', function() {
   if ($('#manager-input').val() === 'manager' && $('#manager-password').val() === 'overlook2019') {
     $('.manager-section').toggle();
     $('.manager-form').hide();
+    $('#manager-input').removeClass('error');
+    $('#manager-password').removeClass('error');
 
   } else {
-    //error
+    showErrorStylingForEmployee()
   }
 });
 
-//Consider converting to if statement sequences and incorporating event.preventDefault()
-//  if the forms start causing problems
 $('.user-submit').on('click', function() {
   if ($('#user-input').val().includes('customer') && $('#user-password').val() ===
   'overlook2019' && (($('#user-input').val().slice(8, 10) * 1) <= 50)) {
     $('.user-section').toggle();
     $('.user-form').hide();
+    $('#user-input').removeClass('error');
+    $('#user-password').removeClass('error');
     userLoginID = ($('#user-input').val().slice(8, 10) * 1);
     loadCustomerDashboardCalculations();
+
   } else {
-    //error
+    showErrorStylingForGuest()
   }
 });
 
+// Error Functionality
+function emptyUserFields() {
+  $('#user-input').val('');
+  $('#user-password').val('')
+}
+
+function showErrorStylingForGuest() {
+  $('#user-input').addClass('error');
+  $('#user-password').addClass('error');
+  emptyUserFields()
+}
+
+function emptyManagerFields() {
+  $('#manager-input').val('');
+  $('#manager-password').val('')
+}
+
+function showErrorStylingForEmployee() {
+  $('#manager-input').addClass('error');
+  $('#manager-password').addClass('error');
+  emptyManagerFields()
+}
+
 // Date Functionality
 let today = new Date();
+
 findTodaysDate();
+
 $('.date').text(today);
 
 function findTodaysDate() {
