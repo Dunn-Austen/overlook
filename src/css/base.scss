@@ -123,18 +123,24 @@ input {
 }
 
 .reservation-history {
+  font-size: 18px;
+  font-weight: bold;
   margin-bottom: 15px;
-  text-decoration: underline;
 }
 
 .customer-list {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   list-style-type: none;
 }
 
 .customer-bookings {
-  font-size: 10px;
-  height: 400px;
+  border: 1px solid black;
+  font-size: 15px;
+  height: 355px;
   overflow: scroll;
+  width: 100%;
 }
 
 .customer__booking--date {
@@ -155,4 +161,21 @@ input {
   flex-direction: column;
   height: 50%;
   justify-content: space-evenly;
+}
+
+.customer__rooms--section {
+  display: none;
+}
+
+.customer__rooms--results {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+}
+
+.reservation-search {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
 }

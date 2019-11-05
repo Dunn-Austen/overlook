@@ -18,6 +18,10 @@ import './images/paradise-hotel.jpg'
 // Have event listener for datepicker hide the bookings log and summon
 // a similar section with radio buttons instead of bullet points
 // use radio btn selection to feed post functionality
+$('.select-date').on('click', function() {
+  $('.customer-list').hide();
+  $('.customer__rooms--section').toggle();
+});
 
 
 // Event listeners - welcome section
