@@ -29,8 +29,12 @@ describe('Manager', () => {
     expect(manager.users).to.eql(usersData);
   });
 
-  it('should be able to find a user\'s ID by name', () => {
+  it('should be able to find all guest names', () => {
     expect(manager.findAllGuestNames().length).to.equal(50);
+  });
+
+  it('should be able to find user\'s id by name', () => {
+    expect(manager.findUserID("Leatha Ullrich")).to.equal(1);
   });
 
   it('should find total available rooms by date', () => {

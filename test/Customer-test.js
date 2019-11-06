@@ -29,6 +29,10 @@ describe('Customer', () => {
     expect(customer.users).to.eql(usersData);
   });
 
+  it('should be able to find user\'s name by id', () => {
+    expect(customer.findUserName(1)).to.equal("Leatha Ullrich");
+  });
+
   it('should find a list of available room types by date', () => {
     expect(customer.findAvailableRoomsByOption("2019/11/06", 'residential suite')).to.eql([
         {

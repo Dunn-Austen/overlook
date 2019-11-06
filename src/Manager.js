@@ -13,6 +13,13 @@ class Manager extends BookingCalculations {
     return userInfo
   }
 
+  findUserID(name) {
+    const userInfo = this.users.find(user => {
+      return user.name === name
+    })
+    return userInfo.id
+  }
+
   findTotalAvailableRoomsByDate(date) {
     let availableRooms = this.findRoomsAvailableByDate(date);
     return availableRooms.length
