@@ -81,13 +81,52 @@
       </div>
     </section>
     <section class="manager-section">
-      <h3>Management Options</h3>
-      <button class="return-manager" type="button" name="button">Log Out</button>
-      <ul class="manager-list">
-        <li>Total Rooms Available: <span class="rooms-available"></span></li>
-        <li>Current Total Revenue (Today): <span class="todays-revenue"></span></li>
-        <li>Current Percent Occupancy: <span class="percent-occupancy"></span></li>
-      </ul>
+      <div class="grid-container" role="presentation">
+        <section class="grid-left">
+          <div class="manager__info--container">
+              <button class="return-manager" type="button" name="button">Log Out</button>
+            <ul class="manager-list">
+              <li>Total Rooms Available: <span class="rooms-available"></span></li>
+              <li>Current Total Revenue (Today): <span class="todays-revenue"></span></li>
+              <li>Current Percent Occupancy: <span class="percent-occupancy"></span></li>
+            </ul>
+            <h3>Guest Information</h3>
+            <h3 class="user-name"></h3>
+            <p>Guest's Total Expenses: <span class="expenses-incurred"></span></p>
+          </div>
+          <h3>Reserve a Room</h3>
+          <div class="reservation-container" role="presentation">
+            <div class="datepicker-container" role="presentation">
+              <label class="datepicker-label" for="user-date">Select Date:</label>
+              <input type="date" id="user-date">
+            </div>
+            <div class="datepicker-container" role="presentation">
+              <label class="datepicker-label" for="room-finder">Filter Results:</label>
+              <select id="room-finder">
+                <option value="" disabled selected>- - - - - - - - - </option>
+                <option value="residential suite">Residential Suite</option>
+                <option value="suite">Suite</option>
+                <option value="junior suite">Junior Suite</option>
+                <option value="single room">Single Room</option>
+              </select>
+            </div>
+            <div class="btn-container" role="presentation">
+              <button class="select-date" type="button" name="button">Find Rooms</button>
+              <button class="return-user" type="button" name="button">Log Out</button>
+            </div>
+            <h4>DELETE INFO</h4>
+          </div>
+        </section>
+        <ul class="customer-list">
+          <li class="reservation-history">Reservation History</li>
+          <li class="bookings-log"></li>
+        </ul>
+        <section class="customer__rooms--section">
+          <h4 class="room-availability">Room Availablity</h4>
+            <div class="available-bookings" role="presentation"></div>
+        </section>
+      </div>
+    </section>
     </section>
   </body>
 </html>

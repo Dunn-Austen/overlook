@@ -152,6 +152,7 @@ function findTodaysDate() {
   today = `${yyyy}/${mm}/${dd}`;
 }
 
+// DOM population functionality
 function produceBookingsForCustomer(id) {
   let arrayOfBookingData = customer.findBookings(id);
   arrayOfBookingData.sort((a, b) => {
@@ -211,6 +212,7 @@ function produceAvailableRoomsByOptionAndDate(date, option) {
       return a.roomNumber - b.roomNumber
     })
   }
+
   if (arrayOfRoomData.length === 0) {
     arrayOfRoomData = [];
   }
@@ -284,7 +286,6 @@ Promise.all([bookingData, roomData, userData])
   })
   .catch(error => {console.log('Something is amiss with promise all', error)});
 
-// Fetch Post
 function postBooking(bookingDatum) {
   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings',
   {
