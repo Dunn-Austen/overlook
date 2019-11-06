@@ -15,6 +15,23 @@ import './images/paradise-hotel.jpg'
  let customer;
  let manager;
  let searchDate;
+ let bookingDatum = {};
+
+
+// Event listener - Post New Booking (Customer)
+$('.available-bookings').on('click', function() {
+  let target = $(event.target);
+  let slicedRoomNum;
+  if (target.is('button')) {
+    let btnClass = target.attr("class");
+    slicedRoomNum = parseInt(btnClass.slice(11, 13));
+    bookingDatum.userID = userLoginID;
+    let formattedDate = searchDate.replace('-', '/').replace('-', '/');
+    bookingDatum.date = formattedDate;
+    bookingDatum.roomNumber = slicedRoomNum;
+    postBooking(bookingDatum)
+  }
+});
 
 // Event listener - Available room search
  $('.select-date').on('click', function() {
@@ -52,7 +69,7 @@ $('.return-home').on('click', function() {
 
 $('.return-user').on('click', function() {
   $('.user-section').hide();
-  $('.welcome-section').toggle()
+  $('.welcome-section').toggle();
   emptyUserFields()
 });
 
@@ -179,8 +196,8 @@ function loadAvailableBookingsByDate(date) {
                <p class="new__customer--property">Bidet:  ${item.bidet}</p>
                <p class="new__customer--property">Bed Size: ${item.bedSize}</p>
                <p class="new__customer--property">Beds:  ${item.numBeds}</p>
-               <p class="new__customer--property">Nightly Cost: ${item.costPerNight}</p>
-               <button class="book-button" type="button" name="button">Book Room</button>
+               <p class="new__customer--property">Nightly Cost: $${item.costPerNight}</p>
+               <button class="book-button${item.number}" type="button" name="button">Book Room</button>
             </div>`
   });
 
@@ -212,7 +229,7 @@ function loadAvailableBookingsByOptionAndDate(date, option) {
                  <p class="new__customer--property">Bed Size: ${item.bedSize}</p>
                  <p class="new__customer--property">Beds:  ${item.numBeds}</p>
                  <p class="new__customer--property">Nightly Cost: ${item.costPerNight}</p>
-                 <button class="book-button" type="button" name="button">Book Room</button>
+                 <button class="book-button${item.number}" type="button" name="button">Book Room</button>
               </div>`
     });
 
@@ -266,3 +283,17 @@ Promise.all([bookingData, roomData, userData])
     loadManagerDashboardCalculations();
   })
   .catch(error => {console.log('Something is amiss with promise all', error)});
+
+// Fetch Post
+function postBooking(bookingDatum) {
+  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings',
+  {
+    method: 'POST',
+    headers: {
+      'Content-Type': "application/json"
+    },
+    body: JSON.stringify(bookingDatum)
+  })
+  .then(response => console.log('Something smells good', response))
+  .catch(error => console.log('Something is amiss', error))
+}
