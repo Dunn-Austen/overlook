@@ -33,7 +33,7 @@ $('.available-bookings').on('click', function() {
   }
 });
 
-// Event listener - Available room search
+// Event listener - Customer room search
  $('.select-date').on('click', function() {
   searchDate = $('#user-date').val();
    if ($('#room-finder :selected').val() === "") {
@@ -45,6 +45,34 @@ $('.available-bookings').on('click', function() {
      $('.customer-list').hide();
      $('.customer__rooms--section').show();
      $('.available-bookings').html(loadAvailableBookingsByOptionAndDate(searchDate, $('#room-finder :selected').val()));
+   }
+ });
+
+ // Event listener - Manager Guest Search
+ $('.available_bookings-manager').on('click', function() {
+   let target = $(event.target);
+   let slicedGuestName;
+   if (target.is('button')) {
+     let btnClass = target.attr("class");
+     slicedGuestName = btnClass.slice(12, 30);
+     console.log(btnClass);
+     console.log(slicedGuestName);
+     userLoginID = manager.findUserID(slicedGuestName)
+     $('.manager_reservation-container').show();
+     $('.expenses_incurred-manager').text((customer.findRevenue(userLoginID)));
+     $('.user_name-manager').text(slicedGuestName);
+     $('.available_bookings-manager').html(loadAllCustomerBookingsToDOMForManager(userLoginID));
+   }
+ });
+
+ // Event listener - Manager room search
+ $('.select_date-manager').on('click', function() {
+  searchDate = $('#user_date-manager').val();
+   if ($('#room_finder-manager :selected').val() === "") {
+     $('.available_bookings-manager').html(loadAvailableBookingsByDate(searchDate));
+
+   } else {
+     $('.available_bookings-manager').html(loadAvailableBookingsByOptionAndDate(searchDate, $('#room-finder :selected').val()));
    }
  });
 
@@ -179,6 +207,19 @@ function loadAllCustomerBookingsToDOM(id) {
   return list
 }
 
+function loadAllCustomerBookingsToDOMForManager(id) {
+  let list;
+  produceBookingsForCustomer(id).forEach(item => {
+    list += `<div class="manager-booking">
+               <p class="manager__booking--date">Date: ${item.date}:</p>
+               <p class="manager__booking--id">Reservation ID: ${item.id}</p>
+               <button class="delete-button${item.id}" type="button" name="button">Delete Reservation</button>
+             </div>`
+  });
+
+  return list
+}
+
 function produceAvailableBookingsForCustomerByDate(date) {
   let arrayOfBookingData = customer.findRoomsAvailableByDate(date);
   arrayOfBookingData.sort((a, b) => {
@@ -240,7 +281,6 @@ function loadAvailableBookingsByOptionAndDate(date, option) {
                <p class="new__customer--property"><span class="property-styling">Our fiercest apologies, but there is no availability for this room type on this date. Please select another option</span></p>
             </div>`
   }
-  console.log(list);
   return list
 }
 
@@ -250,10 +290,24 @@ function loadCustomerDashboardCalculations() {
   $('.bookings-log').html(loadAllCustomerBookingsToDOM(userLoginID));
 }
 
+////set up the ev listener to create the scroll section, have the button click replce the name section with guest details as well as haev the click summon the book reservation menu
+function loadGuestList() {
+  let list;
+    manager.findAllGuestNames().forEach(item => {
+      list += `<div class="guests">
+                 <p class="guest-name"><span class="property-styling">Guest Name:</span> ${item}</p>
+                 <button class="select-guest${item}" type="button" name="button">Manage Guest</button>
+              </div>`
+    });
+
+  return list
+}
+
 function loadManagerDashboardCalculations() {
   $('.rooms-available').text(manager.findTotalAvailableRoomsByDate(today));
   $('.todays-revenue').text(manager.findRevenue(today));
   $('.percent-occupancy').text(manager.findPercentageOfRoomsOccupiedByDate(today));
+  $('.available_bookings-manager').html(loadGuestList());
 }
 
 // Fetch retrievals

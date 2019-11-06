@@ -68,10 +68,6 @@ input {
   display: none;
 }
 
-.manager-section {
-  display: none;
-}
-
 .user-section {
   display: none;
   height: 75%;
@@ -92,10 +88,6 @@ input {
   display: flex;
   flex-direction: column;
   grid-area: left;
-}
-
-.customer-list {
-  grid-area: right;
 }
 
 .input-container {
@@ -126,6 +118,7 @@ input {
   align-items: center;
   display: flex;
   flex-direction: column;
+  grid-area: right;
   list-style-type: none;
 }
 
@@ -140,6 +133,8 @@ input {
 .customer__booking--date {
   font-weight: bold;
 }
+
+
 
 #room-finder {
   font-size: 15px;
@@ -179,6 +174,13 @@ input {
   height: 380px;
 }
 
+.manager-booking {
+  @include flex(center, flex-start);
+  border: 1px solid black;
+  height: 380px;
+  width: 100%;
+}
+
 .user__info--container {
   @include flex(center, center);
   border: 2px dashed black;
@@ -198,9 +200,61 @@ input {
   height: 30px;
 }
 
+.manager-section {
+  display: none;
+  width: 80%;
+}
+
+.grid_container-manager {
+  display: grid;
+  grid-template-areas:
+    "left right";
+  grid-template-columns: .5fr .5fr;
+}
+
+.manager_info-container {
+  align-items: center;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+.manager_guest-info {
+  border: 1px solid black;
+  width: 60%;
+}
+
+.manager_reservation-container {
+  display: none;
+  height: 100%;
+}
+
+.guest_rooms-section {
+  @include flex(center, center);
+  grid-area: right;
+}
+
+.available_bookings-manager {
+  align-items: center;
+  border: 1px solid black;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  overflow: scroll;
+  width: 90%;
+}
+
+.guests {
+  @include flex(center, flex-start);
+  border: 1px solid black;
+  height: 380px;
+  width: 100%;
+}
+
 @media screen and (max-width: 775px) {
   body {
-    height: 150vh;  
+    height: 150vh;
   }
 
   .grid-container {
@@ -213,4 +267,6 @@ input {
   .customer-list {
     margin-right: 80px;
   }
+
+
 }
