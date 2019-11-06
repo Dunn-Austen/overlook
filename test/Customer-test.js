@@ -6,6 +6,7 @@ chai.use(spies);
 
 import bookingsData from '../data/bookings-test-data';
 import roomsData from '../data/rooms';
+import usersData from '../data/users';
 
 import Customer from '../src/Customer';
 
@@ -13,7 +14,7 @@ describe('Customer', () => {
   let customer;
 
   beforeEach(() => {
-    customer = new Customer(bookingsData, roomsData)
+    customer = new Customer(bookingsData, roomsData, usersData)
   });
 
   it('should be a function', () => {
@@ -22,6 +23,10 @@ describe('Customer', () => {
 
   it('should be an instance of the class Customer', () => {
     expect(customer).to.be.an.instanceOf(Customer);
+  });
+
+  it('should be able to store users data in a property', () => {
+    expect(customer.users).to.eql(usersData);
   });
 
   it('should find a list of available room types by date', () => {

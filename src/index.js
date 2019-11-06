@@ -18,6 +18,10 @@ import './images/paradise-hotel.jpg'
 // Have event listener for datepicker hide the bookings log and summon
 // a similar section with radio buttons instead of bullet points
 // use radio btn selection to feed post functionality
+$('.select-date').on('click', function() {
+  $('.customer-list').hide();
+  $('.customer__rooms--section').toggle();
+});
 
 
 // Event listeners - welcome section
@@ -126,6 +130,15 @@ function findTodaysDate() {
 
 function produceCustomerBookingsForDOM(userLoginID) {
   let arrayOfBookingData = customer.findBookings(userLoginID);
+  arrayOfBookingData.sort((a, b) => {
+    if (a.date < b.date) {
+      return -1
+    }
+    if (a.date > b.date) {
+      return 1
+    }
+  })
+  console.log(arrayOfBookingData);
   let list = `<ul class="customer-bookings">`
   arrayOfBookingData.forEach(item => {
     list += `<li class="customer-booking">
@@ -137,6 +150,7 @@ function produceCustomerBookingsForDOM(userLoginID) {
 }
 
 function loadCustomerDashboardCalculations() {
+  $('.user-name').text((customer.findUserName(userLoginID)));
   $('.expenses-incurred').text((customer.findRevenue(userLoginID)));
   $('.bookings-log').html(produceCustomerBookingsForDOM(userLoginID));
 }
@@ -176,7 +190,7 @@ Promise.all([bookingData, roomData, userData])
   })
   .then(() => {
     bookingCalculations = new BookingCalculations(bookingsData, roomsData);
-    customer = new Customer(bookingsData, roomsData);
+    customer = new Customer(bookingsData, roomsData, usersData);
     manager = new Manager(bookingsData, roomsData, usersData);
     gitLog();
     loadManagerDashboardCalculations();
