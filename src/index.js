@@ -150,6 +150,7 @@ function produceCustomerBookingsForDOM(userLoginID) {
 }
 
 function loadCustomerDashboardCalculations() {
+  $('.user-name').text((customer.findUserName(userLoginID)));
   $('.expenses-incurred').text((customer.findRevenue(userLoginID)));
   $('.bookings-log').html(produceCustomerBookingsForDOM(userLoginID));
 }
