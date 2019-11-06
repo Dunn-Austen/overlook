@@ -30,7 +30,7 @@ describe('Manager', () => {
   });
 
   it('should be able to find a user\'s ID by name', () => {
-    expect(manager.findUserID("Faustino Quitzon")).to.equal(9);
+    expect(manager.findAllGuestNames().length).to.equal(50);
   });
 
   it('should find total available rooms by date', () => {
