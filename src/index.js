@@ -16,15 +16,22 @@ import './images/paradise-hotel.jpg'
  let manager;
  let searchDate;
 
-// Event listener - room search
+// Event listener - Available room search
  $('.select-date').on('click', function() {
-   searchDate = $('#user-date').val();
-   $('.customer-list').hide();
-   $('.customer__rooms--section').toggle();
-   $('.available-bookings').html(loadAvailableBookingsByDate(searchDate));
+  searchDate = $('#user-date').val();
+   if ($('#room-finder :selected').val() === "") {
+     $('.customer-list').hide();
+     $('.customer__rooms--section').show();
+     $('.available-bookings').html(loadAvailableBookingsByDate(searchDate));
+
+   } else {
+     $('.customer-list').hide();
+     $('.customer__rooms--section').show();
+     $('.available-bookings').html(loadAvailableBookingsByOptionAndDate(searchDate, $('#room-finder :selected').val()));
+   }
  });
 
-// Event listeners - welcome section
+// Event listeners - Welcome section
 $('.user-btn').on('click', function() {
   $('.user-form').toggle();
   $('.manager-form').hide();
@@ -163,7 +170,6 @@ function produceAvailableBookingsForCustomerByDate(date) {
   return arrayOfBookingData
 }
 
-
 function loadAvailableBookingsByDate(date) {
   let list;
   produceAvailableBookingsForCustomerByDate(date).forEach(item => {
@@ -178,6 +184,44 @@ function loadAvailableBookingsByDate(date) {
             </div>`
   });
 
+  return list
+}
+
+function produceAvailableRoomsByOptionAndDate(date, option) {
+  let arrayOfRoomData = customer.findAvailableRoomsByOption(date, option);
+  if (arrayOfRoomData.length > 1) {
+    arrayOfRoomData.sort((a, b) => {
+      return a.roomNumber - b.roomNumber
+    })
+  }
+  if (arrayOfRoomData.length === 0) {
+    arrayOfRoomData = [];
+  }
+
+  return arrayOfRoomData
+}
+
+function loadAvailableBookingsByOptionAndDate(date, option) {
+  let list;
+  if (produceAvailableRoomsByOptionAndDate(date, option).length > 0) {
+    produceAvailableRoomsByOptionAndDate(date, option).forEach(item => {
+      list += `<div class="customer__rooms--available">
+                 <p class="new__customer--property"><span class="property-styling">Room Number:</span> ${item.number}</p>
+                 <p class="new__customer--property">Room Type: ${item.roomType}</p>
+                 <p class="new__customer--property">Bidet:  ${item.bidet}</p>
+                 <p class="new__customer--property">Bed Size: ${item.bedSize}</p>
+                 <p class="new__customer--property">Beds:  ${item.numBeds}</p>
+                 <p class="new__customer--property">Nightly Cost: ${item.costPerNight}</p>
+                 <button class="book-button" type="button" name="button">Book Room</button>
+              </div>`
+    });
+
+  } else if (produceAvailableRoomsByOptionAndDate(date, option).length === 0) {
+    list = `<div class="customer__rooms--available">
+               <p class="new__customer--property"><span class="property-styling">Our fiercest apologies, but there is no availability for this room type on this date. Please select another option</span></p>
+            </div>`
+  }
+  console.log(list);
   return list
 }
 
