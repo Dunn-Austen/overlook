@@ -16,6 +16,7 @@ import './images/paradise-hotel.jpg'
  let manager;
  let searchDate;
  let bookingDatum = {};
+ let deleteDatum = {};
 
 
 // Event listener - Post New Booking (Customer)
@@ -52,11 +53,9 @@ $('.available-bookings').on('click', function() {
  $('.available_bookings-manager').on('click', function() {
    let target = $(event.target);
    let slicedGuestName;
-   if (target.is('button')) {
-     let btnClass = target.attr("class");
-     slicedGuestName = btnClass.slice(12, 30);
-     console.log(btnClass);
-     console.log(slicedGuestName);
+   let btnClass = target.attr("class");
+   if (target.is('button') && btnClass.includes('select-guest')) {
+     slicedGuestName = btnClass.slice(12, 40);
      userLoginID = manager.findUserID(slicedGuestName)
      $('.manager_reservation-container').show();
      $('.expenses_incurred-manager').text((customer.findRevenue(userLoginID)));
@@ -74,6 +73,19 @@ $('.available-bookings').on('click', function() {
 
    } else {
      $('.available_bookings-manager').html(loadAvailableBookingsByOptionAndDate(searchDate, $('#room-finder :selected').val()));
+   }
+ });
+
+ // Event listener - Manager delete
+ $('.available_bookings-manager').on('click', function() {
+   let target = $(event.target);
+   let reservationID;
+   if (target.is('button')) {
+     let btnClass = target.attr("class");
+     reservationID = btnClass.slice(13, 40);
+     deleteDatum.id = parseInt(reservationID);
+     $(`.${reservationID}`).hide();
+     deleteBooking(deleteDatum);
    }
  });
 
@@ -211,7 +223,7 @@ function loadAllCustomerBookingsToDOM(id) {
 function loadAllCustomerBookingsToDOMForManager(id) {
   let list;
   produceBookingsForCustomer(id).forEach(item => {
-    list += `<div class="manager-booking">
+    list += `<div class="manager-booking ${item.id}">
                <p class="manager__booking--date">Date: ${item.date}:</p>
                <p class="manager__booking--id">Reservation ID: ${item.id}</p>
                <button class="delete-button${item.id}" type="button" name="button">Delete Reservation</button>
@@ -341,6 +353,7 @@ Promise.all([bookingData, roomData, userData])
   })
   .catch(error => {console.log('Something is amiss with promise all', error)});
 
+// Fetch post request
 function postBooking(bookingDatum) {
   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings',
   {
@@ -352,4 +365,18 @@ function postBooking(bookingDatum) {
   })
   .then(response => console.log('Something smells good', response))
   .catch(error => console.log('Something is amiss', error))
+}
+
+// Fetch delete request
+function deleteBooking(deleteDatum) {
+  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings',
+  {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': "application/json"
+    },
+    body: JSON.stringify(deleteDatum)
+  })
+  .then(response => console.log('Something was deleted', response))
+  .catch(error => console.log('Error', error))
 }

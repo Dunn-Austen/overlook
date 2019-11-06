@@ -18,7 +18,7 @@ class Manager extends BookingCalculations {
     let userInfo = this.users.find(user => {
       return user.name === name
     })
-
+    console.log(userInfo);
     return userInfo.id
   }
 
