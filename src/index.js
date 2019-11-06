@@ -62,6 +62,7 @@ $('.available-bookings').on('click', function() {
      $('.expenses_incurred-manager').text((customer.findRevenue(userLoginID)));
      $('.user_name-manager').text(slicedGuestName);
      $('.available_bookings-manager').html(loadAllCustomerBookingsToDOMForManager(userLoginID));
+     $('.room_availability-manager').text('All Guest Bookings')
    }
  });
 

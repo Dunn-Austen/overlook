@@ -220,6 +220,7 @@ input {
 }
 
 .manager_guest-info {
+  @include flex(center, center);
   border: 1px solid black;
   width: 60%;
 }
@@ -243,6 +244,10 @@ input {
   height: 400px;
   overflow: scroll;
   width: 90%;
+}
+
+.manager-reserve {
+  text-align: center;
 }
 
 .guests {
