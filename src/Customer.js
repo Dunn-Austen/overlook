@@ -14,10 +14,10 @@ class Customer extends BookingCalculations {
     return userInfo.name
   }
 
-  findAvailableRoomsByRoomType(date) {
+  findAvailableRoomsByOption(date, roomType) {
     let availableRooms = this.findRoomsAvailableByDate(date);
-    let availableRoomTypes = availableRooms.map(room => {
-      return room.roomType
+    let availableRoomTypes = availableRooms.filter(room => {
+      return room.roomType === roomType
     })
 
     return availableRoomTypes
