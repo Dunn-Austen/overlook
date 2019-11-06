@@ -57,8 +57,9 @@
             <div class="datepicker-container" role="presentation">
               <label class="datepicker-label" for="room-finder">Filter Results:</label>
               <select id="room-finder">
+                <option value="" disabled selected>- - - - - - - - - </option>
                 <option value="roomType">Room Type</option>
-                <option value="bidet">Bidet Available</option>
+                <option value="bidet">Bidet</option>
                 <option value="bedSize">Bed Size</option>
                 <option value="numBeds">Number of Beds</option>
                 <option value="costPerNight">Cost per Night</option>
@@ -75,10 +76,8 @@
           <li class="bookings-log"></li>
         </ul>
         <section class="customer__rooms--section">
-          <ul class="customer__rooms--results ">
-            <li class="reservation-search">Room Availablity</li>
-            <li class="available-bookings"></li>
-          </ul>
+          <h4 class="room-availability">Room Availablity</h4>
+            <div class="available-bookings" role="presentation"></div>
         </section>
       </div>
     </section>

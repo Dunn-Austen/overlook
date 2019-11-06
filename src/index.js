@@ -14,15 +14,15 @@ import './images/paradise-hotel.jpg'
  let bookingCalculations;
  let customer;
  let manager;
+ let searchDate;
 
-// Have event listener for datepicker hide the bookings log and summon
-// a similar section with radio buttons instead of bullet points
-// use radio btn selection to feed post functionality
-$('.select-date').on('click', function() {
-  $('.customer-list').hide();
-  $('.customer__rooms--section').toggle();
-});
-
+// Event listener - room search
+ $('.select-date').on('click', function() {
+   searchDate = $('#user-date').val();
+   $('.customer-list').hide();
+   $('.customer__rooms--section').toggle();
+   $('.available-bookings').html(loadAvailableBookingsByDate(searchDate));
+ });
 
 // Event listeners - welcome section
 $('.user-btn').on('click', function() {
@@ -128,19 +128,24 @@ function findTodaysDate() {
   today = `${yyyy}/${mm}/${dd}`;
 }
 
-function produceCustomerBookingsForDOM(userLoginID) {
-  let arrayOfBookingData = customer.findBookings(userLoginID);
+function produceBookingsForCustomer(id) {
+  let arrayOfBookingData = customer.findBookings(id);
   arrayOfBookingData.sort((a, b) => {
     if (a.date < b.date) {
       return -1
     }
+
     if (a.date > b.date) {
       return 1
     }
   })
-  console.log(arrayOfBookingData);
+
+  return arrayOfBookingData
+}
+
+function loadAllCustomerBookingsToDOM(id) {
   let list = `<ul class="customer-bookings">`
-  arrayOfBookingData.forEach(item => {
+  produceBookingsForCustomer(id).forEach(item => {
     list += `<li class="customer-booking">
              <p class="customer__booking--date">Date: ${item.date}:</p>
              <p class="customer__booking--id">Reservation ID: ${item.id}</p>`
@@ -149,21 +154,43 @@ function produceCustomerBookingsForDOM(userLoginID) {
   return list
 }
 
+function produceAvailableBookingsForCustomerByDate(date) {
+  let arrayOfBookingData = customer.findRoomsAvailableByDate(date);
+  arrayOfBookingData.sort((a, b) => {
+    return a.roomNumber - b.roomNumber
+  })
+
+  return arrayOfBookingData
+}
+
+
+function loadAvailableBookingsByDate(date) {
+  let list;
+  produceAvailableBookingsForCustomerByDate(date).forEach(item => {
+    list += `<div class="customer__rooms--available">
+               <p class="new__customer--property"><span class="property-styling">Room Number:</span> ${item.number}</p>
+               <p class="new__customer--property">Room Type: ${item.roomType}</p>
+               <p class="new__customer--property">Bidet:  ${item.bidet}</p>
+               <p class="new__customer--property">Bed Size: ${item.bedSize}</p>
+               <p class="new__customer--property">Beds:  ${item.numBeds}</p>
+               <p class="new__customer--property">Nightly Cost: ${item.costPerNight}</p>
+               <button class="book-button" type="button" name="button">Book Room</button>
+            </div>`
+  });
+
+  return list
+}
+
 function loadCustomerDashboardCalculations() {
   $('.user-name').text((customer.findUserName(userLoginID)));
   $('.expenses-incurred').text((customer.findRevenue(userLoginID)));
-  $('.bookings-log').html(produceCustomerBookingsForDOM(userLoginID));
+  $('.bookings-log').html(loadAllCustomerBookingsToDOM(userLoginID));
 }
 
 function loadManagerDashboardCalculations() {
   $('.rooms-available').text(manager.findTotalAvailableRoomsByDate(today));
   $('.todays-revenue').text(manager.findRevenue(today));
   $('.percent-occupancy').text(manager.findPercentageOfRoomsOccupiedByDate(today));
-}
-
-function gitLog() {
-  console.log(bookingsData);
-  console.log(bookingCalculations)
 }
 
 // Fetch retrievals
@@ -192,7 +219,6 @@ Promise.all([bookingData, roomData, userData])
     bookingCalculations = new BookingCalculations(bookingsData, roomsData);
     customer = new Customer(bookingsData, roomsData, usersData);
     manager = new Manager(bookingsData, roomsData, usersData);
-    gitLog();
     loadManagerDashboardCalculations();
   })
   .catch(error => {console.log('Something is amiss with promise all', error)});

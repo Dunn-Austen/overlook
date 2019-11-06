@@ -164,20 +164,31 @@ input {
 }
 
 .customer__rooms--section {
-  display: none
+  display: none;
 }
 
-.customer__rooms--results {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  list-style-type: none
-}
-
-.reservation-search {
+.room-availability {
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 15px
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.available-bookings {
+  border: 1px solid black;
+  color: black;
+  height: 400px;
+  overflow: scroll;
+  width: 90%;
+}
+
+.customer__rooms--available {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 380px;
+    justify-content: flex-start;
+    border: 1px solid black;
 }
 
 .user__info--container {
@@ -188,4 +199,16 @@ input {
   height: 100px;
   justify-content: center;
   width: 55%;
+}
+
+.new__customer--property {
+  padding: 0;
+}
+
+.property-styling {
+  font-weight: bold;
+}
+
+.book-button {
+  height: 30px;
 }
