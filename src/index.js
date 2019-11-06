@@ -84,7 +84,7 @@ $('.available-bookings').on('click', function() {
      let btnClass = target.attr("class");
      reservationID = btnClass.slice(13, 40);
      deleteDatum.id = parseInt(reservationID);
-     $(`.${reservationID}`).hide();
+     target.parent().hide();
      deleteBooking(deleteDatum);
    }
  });
