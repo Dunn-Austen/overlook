@@ -29,28 +29,47 @@ describe('Customer', () => {
     expect(customer.users).to.eql(usersData);
   });
 
+  it('should be able to find user\'s name by id', () => {
+    expect(customer.findUserName(1)).to.equal("Leatha Ullrich");
+  });
+
   it('should find a list of available room types by date', () => {
-    expect(customer.findAvailableRoomsByRoomType("2019/11/06")).to.eql([
-      'residential suite',
-      'suite',
-      'single room',
-      'single room',
-      'single room',
-      'junior suite',
-      'junior suite',
-      'single room',
-      'suite',
-      'single room',
-      'single room',
-      'residential suite',
-      'single room',
-      'junior suite',
-      'single room',
-      'residential suite',
-      'single room',
-      'residential suite',
-      'suite',
-      'single room'
+    expect(customer.findAvailableRoomsByOption("2019/11/06", 'residential suite')).to.eql([
+        {
+          "bedSize": "queen",
+          "bidet": true,
+          "costPerNight": 358.4,
+          "numBeds": 1,
+          "number": 1,
+          "roomType": "residential suite"
+        },
+
+        {
+          "bedSize": "full",
+          "bidet": false,
+          "costPerNight": 294.56,
+          "numBeds": 1,
+          "number": 15,
+          "roomType": "residential suite"
+        },
+
+        {
+          "bedSize": "queen",
+          "bidet": false,
+          "costPerNight": 343.95,
+          "numBeds": 1,
+          "number": 20,
+          "roomType": "residential suite"
+        },
+
+        {
+          "bedSize": "queen",
+          "bidet": false,
+          "costPerNight": 176.36,
+          "numBeds": 2,
+          "number": 23,
+          "roomType": "residential suite"
+        }
     ]);
   });
 
@@ -98,7 +117,7 @@ describe('Customer', () => {
         }
       ];
     });
-    expect(customer.findAvailableRoomsByRoomType("2019/11/06").length).to.equal(20);
+    expect(customer.findAvailableRoomsByOption("2019/11/06", 'residential suite').length).to.equal(4);
   });
 
   it('should find a list of available room types by date by inheriting findRoomsAvailableByDate', () => {
@@ -132,10 +151,15 @@ describe('Customer', () => {
         }
       ];
     });
-    expect(customer.findAvailableRoomsByRoomType("2019/11/06")).to.eql([
-      'residential suite',
-      'suite',
-      'single room'
+    expect(customer.findAvailableRoomsByOption("2019/11/06", 'residential suite')).to.eql([
+      {
+      number: 1,
+      roomType: 'residential suite',
+      bidet: true,
+      bedSize: 'queen',
+      numBeds: 1,
+      costPerNight: 358.4
+      }
     ]);
   });
 

@@ -3,3 +3,10 @@
   border: $border;
   color: $text-color;
 }
+
+@mixin flex($align, $justify) {
+    align-items: $align;
+    display: flex;
+    flex-direction: column;
+    justify-content: $justify;
+}

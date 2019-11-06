@@ -46,7 +46,7 @@
         <section class="grid-left">
           <div class="user__info--container">
             <h3 class="user-name"></h3>
-            <p>Total Expenses Incurred: <span class="expenses-incurred"></span></p>
+            <p>Total Expenses: <span class="expenses-incurred"></span></p>
           </div>
           <h3>Reserve a Room</h3>
           <div class="reservation-container" role="presentation">
@@ -58,11 +58,10 @@
               <label class="datepicker-label" for="room-finder">Filter Results:</label>
               <select id="room-finder">
                 <option value="" disabled selected>- - - - - - - - - </option>
-                <option value="roomType">Room Type</option>
-                <option value="bidet">Bidet</option>
-                <option value="bedSize">Bed Size</option>
-                <option value="numBeds">Number of Beds</option>
-                <option value="costPerNight">Cost per Night</option>
+                <option value="residential suite">Residential Suite</option>
+                <option value="suite">Suite</option>
+                <option value="junior suite">Junior Suite</option>
+                <option value="single room">Single Room</option>
               </select>
             </div>
             <div class="btn-container" role="presentation">
@@ -82,13 +81,50 @@
       </div>
     </section>
     <section class="manager-section">
-      <h3>Management Options</h3>
-      <button class="return-manager" type="button" name="button">Log Out</button>
-      <ul class="manager-list">
-        <li>Total Rooms Available: <span class="rooms-available"></span></li>
-        <li>Current Total Revenue (Today): <span class="todays-revenue"></span></li>
-        <li>Current Percent Occupancy: <span class="percent-occupancy"></span></li>
-      </ul>
+      <div class="grid_container-manager" role="presentation">
+        <section class="grid-left">
+          <div class="manager_info-container">
+              <button class="return-manager" type="button" name="button">Log Out</button>
+            <ul class="manager-list">
+              <li>Total Rooms Available: <span class="rooms-available"></span></li>
+              <li>Current Total Revenue (Today): <span class="todays-revenue"></span></li>
+              <li>Current Percent Occupancy: <span class="percent-occupancy"></span></li>
+            </ul>
+          </div>
+          <section class="manager_reservation-container">
+            <h3 class="manager-reserve">Reserve a Room</h3>
+            <div class="reservation-container" role="presentation">
+              <div class="datepicker-container" role="presentation">
+                <label class="datepicker-label" for="user-date">Select Date:</label>
+                <input type="date" id="user_date-manager">
+              </div>
+              <div class="datepicker-container" role="presentation">
+                <label class="datepicker-label" for="room-finder">Filter Results:</label>
+                <select id="room_finder-manager">
+                  <option value="" disabled selected>- - - - - - - - - </option>
+                  <option value="residential suite">Residential Suite</option>
+                  <option value="suite">Suite</option>
+                  <option value="junior suite">Junior Suite</option>
+                  <option value="single room">Single Room</option>
+                </select>
+              </div>
+              <div class="btn-container" role="presentation">
+                <button class="select_date-manager" type="button" name="button">Find Rooms</button>
+              </div>
+            </div>
+          </section>
+        </section>
+        <section class="guest_rooms-section">
+          <div class="manager_guest-info" role="presentation">
+            <h3 class="guest-information">Guest Information</h3>
+            <h3 class="user_name-manager"></h3>
+            <p>Guest's Total Expenses: <span class="expenses_incurred-manager"></span></p>
+          </div>
+          <h4 class="room_availability-manager">Select Guest</h4>
+            <div class="available_bookings-manager" role="presentation"></div>
+        </section>
+      </div>
+    </section>
     </section>
   </body>
 </html>

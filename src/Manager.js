@@ -6,10 +6,19 @@ class Manager extends BookingCalculations {
     this.users = users
   }
 
+  findAllGuestNames() {
+    let userInfo = this.users.map(user => {
+      return user.name
+    })
+
+    return userInfo
+  }
+
   findUserID(name) {
-    const userInfo = this.users.find(user => {
+    let userInfo = this.users.find(user => {
       return user.name === name
     })
+    console.log(userInfo);
     return userInfo.id
   }
 
